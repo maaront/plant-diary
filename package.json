@@ -1,0 +1,19 @@
+{
+  "name": "plant-diary",
+  "version": "1.0.0",
+  "description": "Miro board: https://miro.com/app/board/uXjVMFSwwrs=/?share_link_id=898008821958",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "mysql2": "^3.3.2",
+    "sequelize": "^6.31.1",
+    "sequelize-session-store": "^0.1.0"
+  }
+}
