@@ -1,34 +1,33 @@
-const fetch = require('node-fetch'); // Import fetch
+// We'll need this later when we use node
+// const fetch = require('node-fetch'); // Import fetch
 
-// Add an event listener to the search form.
-document.getElementById('searchForm').addEventListener('submit', function(event) {
+document.getElementById('searchForm').addEventListener('submit', function(event) { // Add an event listener to search form
     event.preventDefault();
 
     const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU'; // Our API token
 
-    // Get the name of the plant from the input box
-    const plantName = document.getElementById('plantName').value;
+    
+    const plantName = document.getElementById('plantName').value; // get the plant name from the input box
 
-    // Pass API token and plant name to the URL
-    fetch(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+    fetch(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`) // Pass API token and plant name to the URL
         
         .then(response => response.json()) //parse the response body text as JSON
         .then(data => {
             // Get the 'results' div where the search results will be displayed
             const resultsDiv = document.getElementById('results');
 
-            // Clear out any previous search results.
-            resultsDiv.innerHTML = '';
+            
+            resultsDiv.innerHTML = ''; // Clear out old search results
 
-            // Loop over each plant in the search results.
+            // Loop over each plant in the response
             data.data.forEach(plant => {
-                // Create a new div for this plant.
+                // Create a new div for this plant
                 const plantDiv = document.createElement('div');
 
-                // Set the text of the div to the common name of the plant.
+                // Set the text of the div to common name
                 plantDiv.textContent = plant.common_name;
 
-                // Append the div to the 'results' div.
+                // Append the div to the 'results' div
                 resultsDiv.appendChild(plantDiv);
             });
         })
