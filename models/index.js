@@ -1,7 +1,7 @@
 // Models
 const Plant = require("./Plant");
 const Diary = require("./Diary");
-const User = require("./user");
+const User = require("./User");
 
 // Associations
 User.hasMany(Plant, {
