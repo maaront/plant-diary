@@ -1,4 +1,4 @@
-// We'll need this later when we use node
+
 // const fetch = require('node-fetch'); // Import fetch
 
 document.getElementById('searchForm').addEventListener('submit', function(event) { // Add an event listener to search form

@@ -25,25 +25,25 @@ router.get("/plant/:id", async (req, res) => {
   }
 });
 
-// GET edit plant
-router.get("/plant/edit/:id", async (req, res) => {
-  try {
-    const plantData = await Plant.findByPk(req.params.id);
-    const plant = plantData.get({ plain: true });
-    res.render("edit-plant", { plant, logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// // GET edit plant
+// router.get("/plant/edit/:id", async (req, res) => {
+//   try {
+//     const plantData = await Plant.findByPk(req.params.id);
+//     const plant = plantData.get({ plain: true });
+//     res.render("edit-plant", { plant, logged_in: req.session.logged_in });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-// GET add plant
-router.get("/add-plant", async (req, res) => {
-  try {
-    res.render("add-plant", { logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// // GET add plant
+// router.get("/add-plant", async (req, res) => {
+//   try {
+//     res.render("add-plant", { logged_in: req.session.logged_in });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // POST add plant
 router.post("/add-plant", async (req, res) => {
