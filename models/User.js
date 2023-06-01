@@ -43,4 +43,4 @@ User.init(
   }
 );
 
-module.exports = Plant;
+module.exports = User;
