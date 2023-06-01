@@ -4,7 +4,7 @@ const session = require('express-session'); // import express-session
 const exphbs = require('express-handlebars'); // import express-handlebars
 const routes = require('./controllers'); // import routes
 const sequelize = require('./config/connection'); // import sequelize connection
-const fetch = require('node-fetch'); // Import fetch
+const fetch = require('node-fetch'); // import fetch
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // import connect-session-sequelize
 
