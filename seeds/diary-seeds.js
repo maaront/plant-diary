@@ -8,14 +8,14 @@ const diaryData = [
     plant_id: 1,
   },
   {
-    name: 'Repotting',
+    title: 'Repotting',
     content: 'Repotted the plant today',
     user_id: 2,
     plant_id: 2,
   },
   {
-    name: 'Fertilizing',
-    title: 'Fertilized the plant today',
+    title: 'Fertilizing',
+    content: 'Fertilized the plant today',
     user_id: 3,
     plant_id: 3,
   },
