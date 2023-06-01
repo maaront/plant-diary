@@ -1,6 +1,23 @@
 const router = require("express").Router();
 const { Plant } = require("../models");
 
+//GET all plants from Trefle API
+router.post('/search', async (req, res) => {
+  const plantName = req.body.plantName;
+  const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+
+  try {
+      const response = await fetch(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`);
+      const data = await response.json();
+
+      res.json(data.data);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // GET all plants for a user
 router.get("/", async (req, res) => {
   try {
