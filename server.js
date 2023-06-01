@@ -5,8 +5,6 @@ const exphbs = require('express-handlebars'); // import express-handlebars
 const routes = require('./controllers'); // import routes
 const sequelize = require('./config/connection'); // import sequelize connection
 const axios = require('axios'); // import axios
-// const fetch = require('node-fetch'); // import fetch
-// import fetch from 'node-fetch'
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // import connect-session-sequelize
 
