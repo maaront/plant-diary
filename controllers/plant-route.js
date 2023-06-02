@@ -41,7 +41,7 @@ router.get('/:plantName', async (req, res) => {
               }
             })
           }
-          res.render('searchplant', data);
+          res.render('searchplants', data);
         })
       
   } catch (err) {
