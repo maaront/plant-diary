@@ -1,5 +1,28 @@
 const router = require("express").Router();
+const { response } = require("express");
 const { Plant } = require("../models");
+const axios = require('axios'); // import axios
+
+//GET all plants from Trefle API
+router.get('/search/:plantName', async (req, res) => {
+  const plantName = req.params.plantName;
+  const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+
+  try {
+      const response = axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+        .then( response => {
+          console.log(response)
+          res.json(response.data.data);
+        })
+      
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+
 
 // GET all plants for a user
 router.get("/", async (req, res) => {
@@ -25,25 +48,25 @@ router.get("/plant/:id", async (req, res) => {
   }
 });
 
-// GET edit plant
-router.get("/plant/edit/:id", async (req, res) => {
-  try {
-    const plantData = await Plant.findByPk(req.params.id);
-    const plant = plantData.get({ plain: true });
-    res.render("edit-plant", { plant, logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// // GET edit plant
+// router.get("/plant/edit/:id", async (req, res) => {
+//   try {
+//     const plantData = await Plant.findByPk(req.params.id);
+//     const plant = plantData.get({ plain: true });
+//     res.render("edit-plant", { plant, logged_in: req.session.logged_in });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-// GET add plant
-router.get("/add-plant", async (req, res) => {
-  try {
-    res.render("add-plant", { logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// // GET add plant
+// router.get("/add-plant", async (req, res) => {
+//   try {
+//     res.render("add-plant", { logged_in: req.session.logged_in });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // POST add plant
 router.post("/add-plant", async (req, res) => {
