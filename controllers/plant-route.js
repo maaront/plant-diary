@@ -4,15 +4,16 @@ const { Plant } = require("../models");
 const axios = require('axios'); // import axios
 
 //GET all plants from Trefle API
-router.get('/search/:plantName', async (req, res) => {
+router.get('/:plantName', async (req, res) => {
+  
   const plantName = req.params.plantName;
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
 
   try {
-      const response = axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+      axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
         .then( response => {
-          console.log(response)
-          res.json(response.data.data);
+          console.log(response.data)
+          res.json(response.data);
         })
       
   } catch (err) {
