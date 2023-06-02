@@ -3,7 +3,7 @@ const { response } = require("express");
 const { Plant } = require("../models");
 const axios = require('axios'); // import axios
 
-//GET all plants from Trefle API. This one works for an HTML page
+//GET all plants from Trefle API. This one works for a static HTML page
 // router.get('/:plantName', async (req, res) => {
   
 //   const plantName = req.params.plantName;
