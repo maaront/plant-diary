@@ -5,18 +5,19 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     // Get the plant name from the form input
     const plantName = document.getElementById('plantName').value;
 
-    // Send a POST request to the /search route on the server
-    fetch('/search', {
-        method: 'POST',
+    // Send a GET request to the /search route on the server
+    fetch(`/plant/${plantName}`, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
         // Convert the JavaScript object to a JSON string
-        body: JSON.stringify({ plantName: plantName })
+        // body: JSON.stringify({ plantName: plantName })
     })
-    
+    // Parse the response as JSON
     .then(response => response.json())
-    .then(data => {
+    .then(response => {
+        console.log(response);
         // Get the 'results' div
         const resultsDiv = document.getElementById('results');
         
@@ -24,7 +25,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
         resultsDiv.innerHTML = '';
         
         // Loop over the data (the plants)
-        data.forEach(plant => {
+        response.data.forEach(plant => {
             // Create a new div for each plant
             const plantDiv = document.createElement('div');
             
@@ -33,6 +34,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
             
             // Append the new div to the 'results' div
             resultsDiv.appendChild(plantDiv);
+            console.log(plant);
         });
     })
     
