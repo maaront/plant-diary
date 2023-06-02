@@ -25,8 +25,8 @@ const sess = { // create session object
 
 // app.use(session(sess)); // use session object
 
-// app.engine('handlebars', hbs.engine); // use handlebars object
-// app.set('view engine', 'handlebars'); // set view engine to handlebars
+app.engine('handlebars', hbs.engine); // use handlebars object
+app.set('view engine', 'handlebars'); // set view engine to handlebars
 
 app.use(express.json()); // use express json
 app.use(express.urlencoded({ extended: true })); // use express urlencoded
