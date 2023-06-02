@@ -24,32 +24,56 @@ const axios = require('axios'); // import axios
 // });
 
 
-//GET all plants from Trefle API. This one is for the handlebars page
-router.get('/:plantName', async (req, res) => {
-  
-  const plantName = req.params.plantName;
-  const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
 
-  try {
-      axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
-        .then( response => {
-          console.log(response.data)
-          const data = {
-            plants: plants.map(plant => {
-              return {
-                common_name: plant.common_name,
-              }
-            })
-          }
-          res.render('searchplants', data);
-        })
+//GET all plants from Trefle API. This one is for the handlebars page NOT WORKING
+// router.get('/:plantName', async (req, res) => {
+  
+//   const plantName = req.params.plantName;
+//   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+
+//   try {
+//       axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+//         .then( response => {
+//           console.log(response.data)
+//           const data = {
+//             plants: plants.map(plant => {
+//               return {
+//                 common_name: plant.common_name,
+//               }
+//             })
+//           }
+//           res.render('searchplants', data);
+//         })
       
-  } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
-  }
+//   } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ message: 'Server error' });
+//   }
+// });
+
+//Take 3 to get handlebars to work
+router.get('/search', (req, res) => {
+  res.render('searchplants');
 });
 
+router.post('/search', async (req, res) => {
+  const plantName = req.body.plantName;
+  const token = const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+  try {
+      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+      const data = {
+        plants: response.data.data.map(plant => {
+          return {
+            common_name: plant.common_name,
+          }
+        })
+      }
+      res.json(data);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });  
+  }
+});
 
 
 // GET one plant

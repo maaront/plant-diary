@@ -7,9 +7,9 @@ document
     // Get the plant name from the form input
     const plantName = document.getElementById("plantName").value;
 
-    // Send a GET request to the /search route on the server
+    // Send a POST request to the /search route on the server
     fetch(`/plant/${plantName}`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
