@@ -20,20 +20,15 @@
   </form>
 
   <h2>Search Results</h2>
-  <div id="search-results"></div>
-
-  <!-- Define the Handlebars template -->
-  <script id="search-results-template" type="text/x-handlebars-template">
-    {{#each results}}
+  <div id="search-results">
+    {{#each plants}}
       <div class="result">
-        <h3><a class="result-link" data-result-id="{{id}}">{{title}}</a></h3>
-        <p>{{description}}</p> 
-          {{#if image}}
-          <img class="result-image" src="{{image}}" alt="Result Image">
-        {{/if}}
+        
+        <p>{{this.common_name}}</p> 
+         
       </div>
     {{else}}
       <p>No results found.</p>
     {{/each}}
-  </script>
+  </div>
 </body>
