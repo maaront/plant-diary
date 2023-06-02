@@ -8,20 +8,21 @@ router.get("/", async (req, res) => {
       include: [{ model: Plant }, { model: Diary }],
     });
     const users = userData.map((user) => user.get({ plain: true }));
-    res.render("all-users", { users, logged_in: req.session.logged_in });
+    res.json(users);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // GET a single user
-router.get("/user/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
       include: [{ model: Plant }, { model: Diary }],
     });
     const user = userData.get({ plain: true });
-    res.render("user", { user, logged_in: req.session.logged_in });
+    console.log(user);
+    res.json(user);
   } catch (err) {
     res.status(500).json(err);
   }
