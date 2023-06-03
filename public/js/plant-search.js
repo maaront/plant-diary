@@ -14,7 +14,7 @@ document
         "Content-Type": "application/json",
       },
       // Convert the JavaScript object to a JSON string
-      // body: JSON.stringify({ plantName: plantName })
+      body: JSON.stringify({ plantName: plantName })
     })
       // Parse the response as JSON
       .then((response) => response.json())
