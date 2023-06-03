@@ -3,7 +3,7 @@ const { response } = require("express");
 const { Plant } = require("../models");
 const axios = require('axios'); // import axios
 
-//GET all plants from Trefle API. This one works for a static HTML page
+// GET all plants from Trefle API. This one works for a static HTML page
 // router.get('/:plantName', async (req, res) => {
   
 //   const plantName = req.params.plantName;
@@ -25,7 +25,7 @@ const axios = require('axios'); // import axios
 
 
 
-//GET all plants from Trefle API. This one is for the handlebars page NOT WORKING
+// GET all plants from Trefle API. This one is for the handlebars page NOT WORKING
 // router.get('/:plantName', async (req, res) => {
   
 //   const plantName = req.params.plantName;
@@ -51,11 +51,19 @@ const axios = require('axios'); // import axios
 //   }
 // });
 
-//Take 3 to get handlebars to work
-router.get('/search', (req, res) => {
-  res.render('searchplants');
+
+
+// Render search page
+router.get('/search', async (req, res) => {
+  try {
+      res.render('searchplants');
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
+  }
 });
 
+//Take 3 to get handlebars to work
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
