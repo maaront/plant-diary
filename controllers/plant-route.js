@@ -3,55 +3,6 @@ const { response } = require("express");
 const { Plant } = require("../models");
 const axios = require('axios'); // import axios
 
-// GET all plants from Trefle API. This one works for a static HTML page
-// router.get('/:plantName', async (req, res) => {
-  
-//   const plantName = req.params.plantName;
-//   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
-
-//   try {
-//       axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
-//         .then( response => {
-//           console.log(response.data)
-//           res.json(response.data);
-//           // res.render('plant-search', { plant: response.data });
-//         })
-      
-//   } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
-
-
-// GET all plants from Trefle API. This one is for the handlebars page NOT WORKING
-// router.get('/:plantName', async (req, res) => {
-  
-//   const plantName = req.params.plantName;
-//   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
-
-//   try {
-//       axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
-//         .then( response => {
-//           console.log(response.data)
-//           const data = {
-//             plants: plants.map(plant => {
-//               return {
-//                 common_name: plant.common_name,
-//               }
-//             })
-//           }
-//           res.render('searchplants', data);
-//         })
-      
-//   } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
-
 
 // Render search page
 router.get('/search', async (req, res) => {
@@ -63,7 +14,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
-//Take 3 to get handlebars to work
+//Route to call Trefle Api and return plant data from search
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
