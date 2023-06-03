@@ -9,6 +9,8 @@ const axios = require('axios'); // import axios
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // import connect-session-sequelize
 
 const hbs = exphbs.create({}); // create handlebars object
+hbs.handlebars.registerPartial('navigation', fs.readFileSync(__dirname + '/views/partials/navigation.handlebars', 'utf8')); // register Navigation partial
+hbs.handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/views/partials/footer.handlebars', 'utf8')); // register Footer partial
 
 const app = express(); // create express object
 const PORT = process.env.PORT || 3001; // set port
