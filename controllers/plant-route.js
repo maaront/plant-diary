@@ -58,7 +58,7 @@ router.get('/search', (req, res) => {
 
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
-  const token = const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+  const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
   try {
       const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
       const data = {

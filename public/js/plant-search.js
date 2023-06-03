@@ -1,14 +1,14 @@
 // Listen for the form submit event
 document
-  .getElementById("searchForm")
+  .getElementById("search-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Get the plant name from the form input
-    const plantName = document.getElementById("plantName").value;
+    const plantName = document.getElementById("search-input").value;
 
     // Send a POST request to the /search route on the server
-    fetch(`/plant/${plantName}`, {
+    fetch(`/plant/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,13 +21,13 @@ document
       .then((response) => {
         console.log(response);
         // Get the 'results' div
-        const resultsDiv = document.getElementById("results");
+        const resultsDiv = document.getElementById("search-results");
 
         // Clear out any old results
         resultsDiv.innerHTML = "";
 
         // Loop over the data (the plants)
-        response.data.forEach((plant) => {
+        response.plants.forEach((plant) => {
           // Create a new div for each plant
           const plantDiv = document.createElement("div");
 
