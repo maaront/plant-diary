@@ -33,16 +33,6 @@ router.post('/search', async (req, res) => {
   }
 });
 
-// Render plant page
-// router.get('/', async (req, res) => {
-//   try {
-//       res.render('plant');
-//   } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
 // Post one plant from search to a page
 router.get('/:plantName', async (req, res) => {
   const plantName = req.params.plantName;
@@ -51,14 +41,6 @@ router.get('/:plantName', async (req, res) => {
   try {
     const response = await axios.get(`https://trefle.io/api/v1/plants?token=${token}&filter[common_name]=${plantName}`);
     const plants = response.data.data;
-    //res.json(plants[0]);
-    // const data = {
-    //   plants: plants.map(plant => ({
-    //     common_name: plant.common_name,
-    //     plant_id: plant.plant_id
-    //   }))
-    // };
-    // console.log(data);
 
     res.render('plant', plants[0]); // Render the plant handlebars page
   } catch (err) {
