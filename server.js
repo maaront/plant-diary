@@ -6,6 +6,7 @@ const routes = require('./controllers'); // import routes
 const sequelize = require('./config/connection'); // import sequelize connection
 const axios = require('axios'); // import axios
 const fs = require('fs'); // import fs
+const helpers = require('./utils/helpers'); // import helpers
 
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // import connect-session-sequelize
@@ -27,7 +28,13 @@ const sess = { // create session object
   })
 };
 
-// app.use(session(sess)); // use session object
+// use session object
+app.use((req, res, next) => {
+  if (!req.session) {
+    req.session = {};
+  }
+  next();
+});
 
 app.engine('handlebars', hbs.engine); // use handlebars object
 app.set('view engine', 'handlebars'); // set view engine to handlebars
