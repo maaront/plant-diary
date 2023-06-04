@@ -12,6 +12,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Render test page in case you need a test page :)
+router.get('/test', async (req, res) => {
+  try {
+      res.render('test');
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 // Route 1: GET '/'
 router.get('/', withAuth, async (req, res) => {
@@ -26,7 +36,7 @@ router.get('/', withAuth, async (req, res) => {
       const users = userData.map((project) => project.get({ plain: true }));
   
       // Render the 'dashboard' template, passing the 'users' array and the 'logged_in' flag from the session
-      res.render('dashboard', {
+      res.render('dashboard', { 
         users,
         logged_in: req.session.logged_in,
       });
@@ -38,10 +48,10 @@ router.get('/', withAuth, async (req, res) => {
   
   // Route 2: GET '/login'
   router.get('/', (req, res) => {
-    // Check if the user is already logged in by checking the 'logged_in' flag in the session
     if (req.session.logged_in) {
+    // Check if the user is already logged in by checking the 'logged_in' flag in the session
       // If the user is logged in, redirect them to the dashboard
-      res.redirect('/dashboard');
+      res.redirect('/dashboard'); 
       return;
     }
   

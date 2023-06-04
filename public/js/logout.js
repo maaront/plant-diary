@@ -6,8 +6,8 @@ const logout = async () => {
     });
   
     if (response.ok) {
-      // If successfully logged out, redirect to the login page
-      document.location.replace('/login');
+      // If successfully logged out, redirect to the homepage page
+      document.location.replace('/homepage');
     } else {
       alert(response.statusText);
     }
