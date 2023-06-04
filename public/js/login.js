@@ -3,26 +3,29 @@ const loginFormHandler = async (event) => {
     event.preventDefault();
   
     // Gather the data from the form elements on the page
-    const email = document.querySelector('#email-login').value.trim();
+    const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
   
-    if (email && password) {
-      // Send the e-mail and password to the server
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+    if (username && password) {
+        // Send the username and password to the server
+        const response = await fetch('/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
   
-      if (response.ok) {
-        document.location.replace('/');
-      } else {
-        alert('Failed to log in');
-      }
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert('Failed to log in');
+        }
     }
-  };
+};
   
-  document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
-  
+document.addEventListener('DOMContentLoaded', function () {
+    let loginForm = document.getElementById('login-form');
+
+    if (loginForm) { // Checking if the form exists
+        loginForm.addEventListener('submit', loginFormHandler);
+    }
+});

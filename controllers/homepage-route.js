@@ -21,7 +21,7 @@ router.get('/', withAuth, async (req, res) => {
         attributes: { exclude: ['password'] }, // Exclude the 'password' field from the fetched data
         order: [['user_name', 'ASC']], // Order the fetched data by the 'name' field in ascending order
       });
-  
+      console.log(userData);
       // Map the fetched data to a new array, excluding any model-related metadata
       const users = userData.map((project) => project.get({ plain: true }));
   
