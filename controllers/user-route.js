@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Plant, Diary } = require("../models");
+const bcrypt = require('bcrypt');
 
 
 // Render create account page
@@ -14,6 +15,9 @@ router.get('/create-account', async (req, res) => {
 
 // POST for user to login
 router.post('/login', async (req, res) => {
+  console.log(`Username: ${req.body.user_name}`);
+    console.log(`Password: ${req.body.user_password}`);
+    
   try {
     const userData = await User.findOne({ where: { user_name: req.body.user_name } });
 
@@ -24,7 +28,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.user_password);
 
     if (!validPassword) {
       res
@@ -41,7 +45,8 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err); // Log the error for debugging
+    res.status(500).json({ message: err.message }); // Send back the error message
   }
 });
 
