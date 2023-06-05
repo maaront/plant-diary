@@ -5,7 +5,7 @@
 
 
 const bcrypt = require('bcrypt');
-const { User } = require('./models'); // adjust the path to your models
+const { User } = require('../../models'); // adjust the path to your models
 
 async function hashPasswords() {
   // Fetch all users
