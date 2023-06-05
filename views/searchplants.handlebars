@@ -3,10 +3,13 @@
 <p>Use the form to search for a plant. Click on the plant to learn more and add it to your diary.</p>
   <!-- Search form -->
   <form id="search-form">
-    <input type="text" id="search-input" placeholder="Search for any Plant">
+    <input type="text" id="search-input" placeholder="Search for any Plant" />
     <button type="submit">Search</button>
   </form>
-<!-- Search results -->
+</div>
+
+<div>
+  <!-- Search results -->
   <h2>Search Results</h2>
   <div id="search-results">
     {{#each plants}}
@@ -19,5 +22,5 @@
       <p>No results found.</p>
     {{/each}}
   </div>
-  <script src="/js/plant-search.js"></script>
-
+</div>
+<script src="/js/plant-search.js"></script>
