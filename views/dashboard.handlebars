@@ -40,23 +40,17 @@
   </div>
   <br>
 
-Test Data outside of each statements:
+Test Data before each statements:
 User name: {{user.user_name}}
 Any plant data here?: {{plants.name}}
 Or here?:  {{plants}}
 
-
-  <h1 class="mb-4"> My Plants:</h1>
-
-{{#each users as |user| }}
-Test Data inside each statements:
-User name: {{user.user_name}}
-Any plant data here?: {{plants.name}}
-Or here?:  {{plants}}
-      <h2><a href="/post/{{id}}" class="text-decoration-none text-reset">{{title}}</a></h2>
-      <p>Created by: {{user.user_name}} | Date: {{format_date createdAt}}</p>
-      
+{{#each users as |user|}}
+  User name: {{user.user_name}}
+  {{#each user.plants as |plant|}}
+    Plant name: {{plant.name}}
   {{/each}}
+{{/each}}
  
 </main> 
 <script src="/js/logout.js"></script>
