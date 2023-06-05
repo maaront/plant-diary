@@ -1,9 +1,6 @@
-<div>
-  <div>
-    <h1>Plant Search</h1>
-    <p>Use the form to search for a plant. Click on the plant to learn more and
-      add it to your diary.</p>
-  </div>
+
+  <h1>Link your leaves</h1>
+<p>Use the form to search for a plant. Click on the plant to learn more and add it to your diary.</p>
   <!-- Search form -->
   <form id="search-form">
     <input type="text" id="search-input" placeholder="Search for any Plant" />
@@ -17,9 +14,9 @@
   <div id="search-results">
     {{#each plants}}
       <div class="result">
-
-        <p>{{this.common_name}}</p>
-
+        
+        <a href="{{this.common_name}}">{{this.common_name}}</a> <br />
+         
       </div>
     {{else}}
       <p>No results found.</p>

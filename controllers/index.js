@@ -6,6 +6,7 @@ const userRoutes = require("./user-route.js");
 const homepageRoutes = require("./homepage-route.js");
 
 router.use("/diary", diaryRoutes);
+router.use("/dashboard", homepageRoutes);
 router.use("/plant", plantRoutes);
 router.use("/users", userRoutes);
 router.use("/", homepageRoutes);
