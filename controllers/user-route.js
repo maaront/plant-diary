@@ -1,30 +1,31 @@
 const router = require("express").Router();
 const { User, Plant, Diary } = require("../models");
-const bcrypt = require('bcrypt');
-
+const bcrypt = require("bcrypt");
 
 // Render create account page
-router.get('/create-account', async (req, res) => {
+router.get("/create-account", async (req, res) => {
   try {
-      res.render('createaccount');
+    res.render("createaccount");
   } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
 // POST for user to login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   console.log(`Username: ${req.body.user_name}`);
-    console.log(`Password: ${req.body.user_password}`);
-    
+  console.log(`Password: ${req.body.user_password}`);
+
   try {
-    const userData = await User.findOne({ where: { user_name: req.body.user_name } });
+    const userData = await User.findOne({
+      where: { user_name: req.body.user_name },
+    });
 
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: "Incorrect username or password, please try again" });
       return;
     }
 
@@ -33,17 +34,16 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: "Incorrect username or password, please try again" });
       return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
+      res.json({ user: userData, message: "You are now logged in!" });
+    });
   } catch (err) {
     console.log(err); // Log the error for debugging
     res.status(500).json({ message: err.message }); // Send back the error message
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
 });
 
 // POST route for user to logout
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -61,21 +61,27 @@ router.post('/logout', (req, res) => {
   }
 });
 
-
-
-
-
 // POST a new user
-// router.post("/", async (req, res) => {
-//   try {
-//     const newUser = await User.create(req.body);
-//     res.status(200).json(newUser);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+router.post("/", async (req, res) => {
+  try {
+    const userData = await User.create({
+      user_name: req.body.user_name,
+      user_password: req.body.user_password,
+    });
 
-// // GET all users
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// GET all users
 // router.get("/", async (req, res) => {
 //   try {
 //     const userData = await User.findAll({
