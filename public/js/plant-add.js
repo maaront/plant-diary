@@ -1,29 +1,26 @@
-// Listen for the form submit event
-document.getElementById("add-plant").addEventListener("click", function (event) {
-    event.preventDefault();
-  
-    // Get the plant name from the Name field
-    const plantName = document.getElementById("common-name").value;
-  
-    // Send a POST request to the /search route on the server
-    fetch(`/plant/id`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Convert the JavaScript object to a JSON string
-      body: JSON.stringify({ plantName: plantName })
-    })
-      // Parse the response as JSON
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-    
-  
-          console.log(plant);
-        });
-      })
-      .catch((error) => console.error("Error:", error));
-    
-    
-  
+// Add event listener to button click
+document.getElementById('add-plant').addEventListener('click', async () => {
+
+    // Get required plant data from the HTML elements. We can add more later
+  const commonName = document.getElementById('common-name').innerText;
+  const scientificName = document.getElementById('common-name').innerText;
+
+  // POST request to '/plant/add'route 
+  const response = await fetch('/plant/add', {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    body: JSON.stringify({ 
+      common_name: commonName, 
+      scientific_name: scientificName
+    }),
+  });
+
+  // Check if the response was successful
+  if (response.ok) {
+    alert('Plant added successfully');
+  } else {
+    alert('Failed to add plant');
+  }
+});
