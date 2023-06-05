@@ -61,9 +61,18 @@ router.post('/logout', (req, res) => {
   }
 });
 
-
-
-
+// GET all users
+router.get("/", async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      include: [{ model: Plant }, { model: Diary }],
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
+    res.json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // POST a new user
 // router.post("/", async (req, res) => {
@@ -75,18 +84,7 @@ router.post('/logout', (req, res) => {
 //   }
 // });
 
-// // GET all users
-// router.get("/", async (req, res) => {
-//   try {
-//     const userData = await User.findAll({
-//       include: [{ model: Plant }, { model: Diary }],
-//     });
-//     const users = userData.map((user) => user.get({ plain: true }));
-//     res.json(users);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+
 
 // // GET a single user
 // router.get("/:id", async (req, res) => {

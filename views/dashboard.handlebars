@@ -2,6 +2,36 @@
   <div class="row">
     <div class="col-12"> 
 
+ <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-2" href="/"> Welcome! </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Add Plant</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Plant Diary</a>
+                </li>
+                <li class="nav-item">
+                  <a id="logout" class="nav-link" href="/">Logout </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
 
 
@@ -10,14 +40,18 @@
     </div>
   </div>
   <br>
-  <h1 class="mb-4"> My Plants:</h1>
-  {{#each posts}}
-    <div class="post-container post mb-3">
-      <h2><a href="/post/{{id}}" class="text-decoration-none text-reset">{{title}}</a></h2>
-      <p>Created by: {{user.username}} | Date: {{format_date createdAt}}</p>
-      <a href="/editpost/{{id}}" class="btn btn-warning">Edit Post</a>
-      <button class="btn btn-danger delete-post" data-post-id="{{id}}">Delete</button>
-    </div>
+
+Test Data before each statements:
+User name: {{user.user_name}}
+Any plant data here?: {{plants.name}}
+Or here?:  {{plants}}
+
+{{#each users as |user|}}
+  User name: {{user.user_name}}
+  {{#each user.plants as |plant|}}
+    Plant name: {{plant.name}}
   {{/each}}
-</main>
+{{/each}}
+ 
+</main> 
 <script src="/js/logout.js"></script>
