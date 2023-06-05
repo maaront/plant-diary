@@ -28,13 +28,15 @@ const sess = { // create session object
   })
 };
 
-// use session object
-app.use((req, res, next) => {
-  if (!req.session) {
-    req.session = {};
-  }
-  next();
-});
+// use session object - Do I even need this? Commenting out for now.
+// app.use((req, res, next) => {
+//   if (!req.session) {
+//     req.session = {};
+//   }
+//   next();
+// });
+
+app.use(session(sess));
 
 app.engine('handlebars', hbs.engine); // use handlebars object
 app.set('view engine', 'handlebars'); // set view engine to handlebars
