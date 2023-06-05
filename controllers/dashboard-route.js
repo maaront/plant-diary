@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
 });
 
 
-
+// OLD CODE DOWN BELOW!
 // // Render the dashboard page
 // router.get('/', async (req, res) => {
 //   try {
