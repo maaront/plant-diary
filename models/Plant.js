@@ -13,11 +13,11 @@ Plant.init(
     },
     common_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     scientific_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     date_created: {
       type: DataTypes.DATE,
