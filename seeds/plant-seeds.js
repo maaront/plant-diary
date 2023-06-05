@@ -2,18 +2,18 @@ const { Plant } = require('../models');
 
 const plantData = [
   {
-    name: 'Rose',
-    description: 'A beautiful flower',
+    common_name: 'Prickly rose',
+    scientific_name: 'Rosa acicularis',
     user_id: 1,
   },
   {
-    name: 'Poison Ivy',
-    description: 'A dangerous plant',
+    common_name: 'Lemon day-lily',
+    scientific_common_name: 'Hemerocallis lilioasphodelus',
     user_id: 2,
   },
   {
-    name: 'Cactus',
-    description: 'A prickly plant',
+    common_name: 'Heartleaf rosemallow',
+    scientific_name: 'Hibiscus martianus',
     user_id: 3,
   },
 ];

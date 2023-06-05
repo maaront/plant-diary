@@ -17,10 +17,17 @@ document.getElementById('add-plant').addEventListener('click', async () => {
     }),
   });
 
-  // Check if the response was successful
+  // Create new div for fail/success message
+  const messageDiv = document.createElement('div');
+
   if (response.ok) {
-    alert('Plant added successfully');
+    // Success
+    messageDiv.innerText = 'Plant added successfully';
   } else {
-    alert('Failed to add plant');
+    // Failed
+    messageDiv.innerText = 'Failed to add plant';
   }
+
+  // Add the new div to the body of the document
+  document.body.appendChild(messageDiv);
 });
