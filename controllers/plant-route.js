@@ -49,9 +49,8 @@ router.get('/:plantName', async (req, res) => {
   }
 });
 
-
 // POST add plant
-router.post("/plant/add", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const newPlant = await Plant.create({
       ...req.body,
