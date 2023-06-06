@@ -24,22 +24,29 @@ document.getElementById("search-form").addEventListener("submit", function (even
       // Clear out any old results
       resultsDiv.innerHTML = "";
 
+      // Create a row div for the card layout
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("row");
+
       // Loop over the data (the plants)
       response.plants.forEach((plant) => {
+        // Create a new column div for the Bootstrap grid
+        const colDiv = document.createElement("div");
+        colDiv.classList.add("col-sm-3");
+
         // Create a new div for each piece of plant data
         const plantDiv = document.createElement("div");
         plantDiv.classList.add("card");
-        plantDiv.style.width = "15rem";
-
+        
         const plantLink = document.createElement("a");
         plantLink.href = `/plant/${plant.common_name}`;
         plantLink.classList.add("plant-link", "another-class");
 
         const imgDiv = document.createElement("div");
         imgDiv.classList.add("card-img-top");
-        const nameDiv = document.createElement("div");
+        const nameDiv = document.createElement("h5");
         nameDiv.classList.add("card-title");
-        const sciNameDiv = document.createElement("div");
+        const sciNameDiv = document.createElement("h6");
         sciNameDiv.classList.add("card-body");
 
         // Set the text of each div
@@ -59,11 +66,15 @@ document.getElementById("search-form").addEventListener("submit", function (even
         // Append the plantLink to the main div
         plantDiv.appendChild(plantLink);
 
-        // Append the main div to the 'results' div
-        resultsDiv.appendChild(plantDiv);
+        // Append the main div to the column div
+        colDiv.appendChild(plantDiv);
 
-        console.log(plant);
+        // Append the column div to the row div
+        rowDiv.appendChild(colDiv);
       });
+
+      // Append the row div to the 'results' div
+      resultsDiv.appendChild(rowDiv);
     })
     .catch((error) => console.error("Error:", error));
 });

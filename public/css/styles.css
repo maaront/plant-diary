@@ -1,0 +1,23 @@
+.card {
+    width: 15rem;
+} 
+  
+  .plant-link {
+  }
+  
+  .card-img-top {
+    height: 100px;
+    overflow: hidden;
+  }
+  
+  .card-img-top img {
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .card-title {
+  }
+  
+  .card-body {
+  }
+  
