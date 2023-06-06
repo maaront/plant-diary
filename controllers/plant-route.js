@@ -49,7 +49,18 @@ router.get('/:plantName', async (req, res) => {
   }
 });
 
-
+// POST add plant
+router.post("/add", async (req, res) => {
+  try {
+    const newPlant = await Plant.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+    res.status(200).json(newPlant);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 
 
@@ -88,18 +99,7 @@ router.get('/:plantName', async (req, res) => {
 //   }
 // });
 
-// POST add plant
-// router.post("/add-plant", async (req, res) => {
-//   try {
-//     const newPlant = await Plant.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//     });
-//     res.status(200).json(newPlant);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
+
 
 // PUT edit plant
 // router.put("/plant/edit/:id", async (req, res) => {

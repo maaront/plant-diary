@@ -11,13 +11,13 @@ Plant.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    common_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    description: {
+    scientific_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     date_created: {
       type: DataTypes.DATE,
