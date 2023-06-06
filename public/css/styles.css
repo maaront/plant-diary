@@ -41,3 +41,12 @@ display: flex;
   .card-body {
   }
   
+  #search-input {
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: var(--accent)
+    }
+
+    #search-input:focus {
+      
+    }
