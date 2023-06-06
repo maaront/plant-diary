@@ -1,8 +1,28 @@
+:root {
+  --dark: #03172c;
+  --light: #F3F3F3;
+  --accent: #7A97E0;
+}
+
+.row {
+display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .card {
     width: 15rem;
+    margin-bottom: 20px;
+    min-height: 195px;
 } 
   
-  .plant-link {
+.card a {
+  text-decoration: none;
+  color: var(--dark)
+}
+
+.plant-link {
   }
   
   .card-img-top {

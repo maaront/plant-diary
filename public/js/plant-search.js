@@ -40,14 +40,14 @@ document.getElementById("search-form").addEventListener("submit", function (even
         
         const plantLink = document.createElement("a");
         plantLink.href = `/plant/${plant.common_name}`;
-        plantLink.classList.add("plant-link", "another-class");
+        plantLink.classList.add("plant-link");
 
         const imgDiv = document.createElement("div");
         imgDiv.classList.add("card-img-top");
-        const nameDiv = document.createElement("h5");
+        const nameDiv = document.createElement("h6");
         nameDiv.classList.add("card-title");
-        const sciNameDiv = document.createElement("h6");
-        sciNameDiv.classList.add("card-body");
+        const sciNameDiv = document.createElement("p");
+        sciNameDiv.classList.add("body");
 
         // Set the text of each div
         nameDiv.textContent = `Name: ${plant.common_name}`;
