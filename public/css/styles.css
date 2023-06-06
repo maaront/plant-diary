@@ -14,15 +14,31 @@
 
 .card {
   width: 15rem;
-  margin-bottom: 20px;
+  margin: 20px;
   min-height: 195px;
   border: 0;
   line-height: 1rem;
+  transition-timing-function: ease;
+}
+
+.card:hover {
+  background-color: var(--accent);
+}
+.card:hover a {
+color: var(--light);
 }
 
 .card a {
   text-decoration: none;
   color: var(--dark);
+}
+
+.card-title {
+  padding: 5px 0 0 16px;
+}
+
+.card-body {
+  padding: 0 16px;
 }
 
 .plant-link {
@@ -87,7 +103,7 @@
 
 .plant-image {
   width: 100%;
-  max-width: 450px;
+  max-width: 600px;
   aspect-ratio: 3 / 2;
   overflow: hidden;
 }
@@ -103,4 +119,15 @@
 .btn-color {
   background-color: var(--accent);
   color: var(--light);
+}
+
+.btn-color:hover {
+  background: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+
+#back-to-search {
+  margin-top: 50px;
 }

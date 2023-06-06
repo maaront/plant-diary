@@ -54,7 +54,7 @@ function fetchAndDisplayResults(plantName, page) {
         const nameDiv = document.createElement("h6");
         nameDiv.classList.add("card-title");
         const sciNameDiv = document.createElement("p");
-        sciNameDiv.classList.add("body");
+        sciNameDiv.classList.add("card-body");
 
         // Set the text of each div
         nameDiv.textContent = `Name: ${plant.common_name}`;
