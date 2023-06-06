@@ -68,13 +68,13 @@ router.post("/", async (req, res) => {
       user_name: req.body.user_name,
       user_password: req.body.user_password,
     });
+    console.log(req.session);
+    //req.session.save(() => {
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json(userData);
-    });
+    res.status(200).json(userData);
+    // });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -82,31 +82,32 @@ router.post("/", async (req, res) => {
 });
 
 // GET all users
-// router.get("/", async (req, res) => {
-//   try {
-//     const userData = await User.findAll({
-//       include: [{ model: Plant }, { model: Diary }],
-//     });
-//     const users = userData.map((user) => user.get({ plain: true }));
-//     res.json(users);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/", async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      include: [{ model: Plant }, { model: Diary }],
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
+    console.log(users);
+    res.json({ users });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// // GET a single user
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.params.id, {
-//       include: [{ model: Plant }, { model: Diary }],
-//     });
-//     const user = userData.get({ plain: true });
-//     console.log(user);
-//     res.json(user);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// GET a single user
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include: [{ model: Plant }, { model: Diary }],
+    });
+    const user = userData.get({ plain: true });
+
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // // POST login
 // router.post("/login", async (req, res) => {
