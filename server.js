@@ -3,10 +3,9 @@ const express = require("express"); // import express
 const session = require("express-session"); // import express-session
 const exphbs = require("express-handlebars"); // import express-handlebars
 const routes = require("./controllers"); // import routes
- const axios = require('axios'); // import axios
-const fs = require('fs'); // import fs
+const axios = require("axios"); // import axios
+const fs = require("fs"); // import fs
 const helpers = require("./utils/helpers"); // import helpers
-
 
 const sequelize = require("./config/connection"); // import sequelize connection
 const SequelizeStore = require("connect-session-sequelize")(session.Store); // import connect-session-sequelize
@@ -29,12 +28,14 @@ const sess = {
 };
 
 // use session object
-app.use((req, res, next) => {
-  if (!req.session) {
-    req.session = {};
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!req.session) {
+//     req.session = {};
+//   }
+//   next();
+// });
+
+app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });
 

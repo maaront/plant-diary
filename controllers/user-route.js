@@ -69,12 +69,12 @@ router.post("/", async (req, res) => {
       user_password: req.body.user_password,
     });
     console.log(req.session);
-    //req.session.save(() => {
-    req.session.user_id = userData.id;
-    req.session.logged_in = true;
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
 
-    res.status(200).json(userData);
-    // });
+      res.status(200).json(userData);
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
