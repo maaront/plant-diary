@@ -24,30 +24,42 @@ document.getElementById("search-form").addEventListener("submit", function (even
       // Clear out any old results
       resultsDiv.innerHTML = "";
 
-      // Create a new unordered list
-      const resultsList = document.createElement("ul");
-
       // Loop over the data (the plants)
       response.plants.forEach((plant) => {
-        // Create a new list item and anchor element for each plant
-        const listItem = document.createElement("li");
+        // Create a new div, list and list items for each piece of plant data
+        const plantDiv = document.createElement("div");
+        const ul = document.createElement("ul");
+        const liName = document.createElement("li");
+        const liSciName = document.createElement("li");
+        const liImg = document.createElement("li");
+
         const plantLink = document.createElement("a");
-
-        // Set the text of the anchor element to the common name of the plant
-        plantLink.textContent = plant.common_name;
-
-        // Set the href attribute of the anchor element to navigate to the plant page
         plantLink.href = `/plant/${plant.common_name}`;
-      
-        // Append the anchor element to the list item, and append the list item to the results list
-        listItem.appendChild(plantLink);
-        resultsList.appendChild(listItem);
+
+        // Set the text of each list item
+        liName.textContent = `Name: ${plant.common_name}`;
+        liSciName.textContent = `Scientific Name: ${plant.scientific_name}`;
+        
+        const img = document.createElement("img");
+        img.src = plant.image_url;
+        liImg.appendChild(img);
+
+        // Append the list items to the unordered list
+        ul.appendChild(liName);
+        ul.appendChild(liSciName);
+        ul.appendChild(liImg);
+
+        // Append the ul to the plantLink
+        plantLink.appendChild(ul);
+        
+        // Append the plantLink to the div
+        plantDiv.appendChild(plantLink);
+
+        // Append the div to the 'results' div
+        resultsDiv.appendChild(plantDiv);
 
         console.log(plant);
       });
-
-      // Append the results list to the 'results' div
-      resultsDiv.appendChild(resultsList);
     })
     .catch((error) => console.error("Error:", error));
 });
