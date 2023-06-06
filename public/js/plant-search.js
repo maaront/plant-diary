@@ -28,13 +28,21 @@ document.getElementById("search-form").addEventListener("submit", function (even
       response.plants.forEach((plant) => {
         // Create a new div, list and list items for each piece of plant data
         const plantDiv = document.createElement("div");
+        plantDiv.className = "plant-div";
+
         const ul = document.createElement("ul");
+        ul.className = "plant-ul";
+
         const liName = document.createElement("li");
+        liName.className = "plant-name";
         const liSciName = document.createElement("li");
+        liSciName.className = "plant-sci-name";
         const liImg = document.createElement("li");
+        liImg.className = "plant-img";
 
         const plantLink = document.createElement("a");
         plantLink.href = `/plant/${plant.common_name}`;
+        plantLink.className = "plant-link";
 
         // Set the text of each list item
         liName.textContent = `Name: ${plant.common_name}`;
@@ -42,6 +50,7 @@ document.getElementById("search-form").addEventListener("submit", function (even
         
         const img = document.createElement("img");
         img.src = plant.image_url;
+        img.className = "plant-image";
         liImg.appendChild(img);
 
         // Append the list items to the unordered list
