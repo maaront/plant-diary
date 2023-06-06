@@ -1,12 +1,17 @@
-<div>
-<ul>
-<li>Name: <span id="common-name">{{common_name}}</span></li>
-<li>Scientific name: <span id="scientific-name">{{scientific_name}}</span></li>
-<li><img src="{{image_url}}"></li>
-</ul>
+<div class="container plant-container">
+  <div class="row search-page-container">
+    <div
+      class="col flex-direction-column justify-content-start align-items-start"
+    >
+      <p><span id="common-name">{{common_name}}</span></p>
+      <p><span id="scientific-name">{{scientific_name}}</span></p>
+      <button class="btn btn-color" id="add-plant">Add to my database</button>
+    </div>
+    <div class="col plant-image">
+      <img class="plant-img" src="{{image_url}}" />
+    </div>
+  </div>
 </div>
 
-<button id="add-plant">Link this Leaf!</button>
-
-<a href="/plant/search">Back to search</a>
+<button onclick="window.location.href='/plant/search';" id="back-to-search" class="btn btn-outline-dark">Back to search</button>
 <script src="/js/plant-add.js"></script>
