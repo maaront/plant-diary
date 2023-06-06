@@ -16,29 +16,36 @@ router.get('/search', async (req, res) => {
 //Post all searched for plants from API to a page
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
-  const page = req.body.page || 1;
-  const pageSize = req.body.pageSize || 20;
+  const page = req.body.page || 1; // Default to page 1 if not provided
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
-  
   try {
-      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}&page_size=${pageSize}`);
+      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}`);
       const data = {
         plants: response.data.data.map(plant => {
           return {
             common_name: plant.common_name,
             scientific_name: plant.scientific_name,
             image_url: plant.image_url,
+            
           }
         }),
+        // total_pages: response.data.meta.total_pages,
         links: response.data.links,
-        meta: response.data.meta
+        
       }
+      console.log(data)
       res.json(data);
   } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });  
-  }
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });  
+}
 });
+
+//Post route for next page
+router.post('/search/next')
+
+
+
 
 // Post one plant from search to a page
 router.get('/:plantName', async (req, res) => {
@@ -68,72 +75,5 @@ router.post("/add", async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-
-
-// GET all plants for a user
-// router.get("/", async (req, res) => {
-//   try {
-//     const plantData = await Plant.findAll({
-//       where: { user_id: req.session.user_id },
-//     });
-//     const plants = plantData.map((plant) => plant.get({ plain: true }));
-//     res.render("all-plants", { plants, logged_in: req.session.logged_in });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
-
-// // GET edit plant
-// router.get("/plant/edit/:id", async (req, res) => {
-//   try {
-//     const plantData = await Plant.findByPk(req.params.id);
-//     const plant = plantData.get({ plain: true });
-//     res.render("edit-plant", { plant, logged_in: req.session.logged_in });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// // GET add plant
-// router.get("/add-plant", async (req, res) => {
-//   try {
-//     res.render("add-plant", { logged_in: req.session.logged_in });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
-
-// PUT edit plant
-// router.put("/plant/edit/:id", async (req, res) => {
-//   try {
-//     const plantData = await Plant.update(req.body, {
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json(plantData);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-// DELETE plant
-// router.delete("/plant/:id", async (req, res) => {
-//   try {
-//     const plantData = await Plant.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     res.status(200).json(plantData);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
 
 module.exports = router;
