@@ -1,12 +1,26 @@
-function searchFormSubmit(event, searchQuery) {
-  event.preventDefault();
+document
+  .querySelector("#search-form")
+  .addEventListener("submit", searchFormSubmit);
 
-  fetch('/plant/search', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ plantName: searchQuery })
+function searchFormSubmit(event, url = '') {
+  event.preventDefault();
+  
+  let fetchUrl = '/api/plants/search';
+  let method = 'POST';
+  let headers = { 'Content-Type': 'application/json' };
+  let body = JSON.stringify({ plantName: document.querySelector("#plant-search").value });
+
+  if (url) {
+    fetchUrl = url;
+    method = 'GET';
+    headers = {};
+    body = null;
+  }
+
+  fetch(fetchUrl, {
+    method,
+    headers,
+    body,
   })
   .then((response) => response.json())
   .then((response) => {
@@ -41,42 +55,22 @@ function searchFormSubmit(event, searchQuery) {
     const paginationDiv = document.getElementById("pagination");
     paginationDiv.innerHTML = "";
 
-    const firstButton = document.createElement("button");
-    firstButton.textContent = "First";
-    firstButton.addEventListener("click", function (event) {
-      searchFormSubmit(event, response.links.first);
-    });
-    paginationDiv.appendChild(firstButton);
+    // Add Prev and Next buttons with their respective link data
+    const prevButton = createPaginationButton('Previous', response.links.prev);
+    const nextButton = createPaginationButton('Next', response.links.next);
 
-    const prevButton = document.createElement("button");
-    prevButton.textContent = "Previous";
-    // If we are on the first page, disable the "Previous" button
-    if (response.links.self === response.links.first) {
-      prevButton.disabled = true;
-    } else {
-      prevButton.addEventListener("click", function (event) {
-        searchFormSubmit(event, response.links.self - 1);
-      });
-    }
     paginationDiv.appendChild(prevButton);
-
-    const nextButton = document.createElement("button");
-    nextButton.textContent = "Next";
-    // If we are on the last page, disable the "Next" button
-    if (response.links.self === response.links.last) {
-      nextButton.disabled = true;
-    } else {
-      nextButton.addEventListener("click", function (event) {
-        searchFormSubmit(event, response.links.self + 1);
-      });
-    }
     paginationDiv.appendChild(nextButton);
 
-    const lastButton = document.createElement("button");
-    lastButton.textContent = "Last";
-    lastButton.addEventListener("click", function (event) {
-      searchFormSubmit(event, response.links.last);
-    });
-    paginationDiv.appendChild(lastButton);
-  });
+  })
+  .catch((err) => console.error(err));  // Handle errors
+}
+
+function createPaginationButton(text, url) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.onclick = (event) => {
+    searchFormSubmit(event, url);
+  };
+  return button;
 }

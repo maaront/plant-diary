@@ -14,36 +14,46 @@ router.get('/search', async (req, res) => {
 });
 
 //Post all searched for plants from API to a page
-router.post('/search', async (req, res) => {
-  const plantName = req.body.plantName;
-  const page = req.body.page || 1; // Default to page 1 if not provided
-  const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
-  try {
-      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}`);
-      const data = {
-        plants: response.data.data.map(plant => {
-          return {
-            common_name: plant.common_name,
-            scientific_name: plant.scientific_name,
-            image_url: plant.image_url,
-            
-          }
-        }),
-        // total_pages: response.data.meta.total_pages,
-        links: response.data.links,
-        
+router.route('/search')
+  .post(async (req, res) => {
+    const plantName = req.body.plantName;
+    const page = req.body.page || 1; // Default to page 1 if not provided
+    const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+    try {
+        const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}`);
+        const data = parseResponseData(response);
+        res.json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });  
+    }
+  })
+  .get(async (req, res) => {
+    const url = req.query.url; // Get the URL from the query parameters
+    const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+    try {
+        const response = await axios.get(`https://trefle.io${url}&token=${token}`);
+        const data = parseResponseData(response);
+        res.json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });  
+    }
+  });
+
+function parseResponseData(response) {
+  return {
+    plants: response.data.data.map(plant => {
+      return {
+        common_name: plant.common_name,
+        scientific_name: plant.scientific_name,
+        image_url: plant.image_url,
       }
-      console.log(data)
-      res.json(data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });  
+    }),
+    links: response.data.links,
+    total_pages: response.data.meta.total_pages,
+  };
 }
-});
-
-//Post route for next page
-router.post('/search/next')
-
 
 
 
