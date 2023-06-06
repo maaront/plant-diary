@@ -16,6 +16,8 @@
   width: 15rem;
   margin-bottom: 20px;
   min-height: 195px;
+  border: 0;
+  line-height: 1rem;
 }
 
 .card a {
