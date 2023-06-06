@@ -26,45 +26,40 @@ document.getElementById("search-form").addEventListener("submit", function (even
 
       // Loop over the data (the plants)
       response.plants.forEach((plant) => {
-        // Create a new div, list and list items for each piece of plant data
+        // Create a new div for each piece of plant data
         const plantDiv = document.createElement("div");
-        plantDiv.className = "plant-div";
-
-        const ul = document.createElement("ul");
-        ul.className = "plant-ul";
-
-        const liName = document.createElement("li");
-        liName.className = "plant-name";
-        const liSciName = document.createElement("li");
-        liSciName.className = "plant-sci-name";
-        const liImg = document.createElement("li");
-        liImg.className = "plant-img";
+        plantDiv.classList.add("card");
+        plantDiv.style.width = "15rem";
 
         const plantLink = document.createElement("a");
         plantLink.href = `/plant/${plant.common_name}`;
-        plantLink.className = "plant-link";
+        plantLink.classList.add("plant-link", "another-class");
 
-        // Set the text of each list item
-        liName.textContent = `Name: ${plant.common_name}`;
-        liSciName.textContent = `Scientific Name: ${plant.scientific_name}`;
+        const imgDiv = document.createElement("div");
+        imgDiv.classList.add("card-img-top");
+        const nameDiv = document.createElement("div");
+        nameDiv.classList.add("card-title");
+        const sciNameDiv = document.createElement("div");
+        sciNameDiv.classList.add("card-body");
+
+        // Set the text of each div
+        nameDiv.textContent = `Name: ${plant.common_name}`;
+        sciNameDiv.textContent = `Scientific Name: ${plant.scientific_name}`;
         
         const img = document.createElement("img");
         img.src = plant.image_url;
-        img.className = "plant-image";
-        liImg.appendChild(img);
+        img.classList.add("card-img-top", "another-class");
+        imgDiv.appendChild(img);
 
-        // Append the list items to the unordered list
-        ul.appendChild(liName);
-        ul.appendChild(liSciName);
-        ul.appendChild(liImg);
-
-        // Append the ul to the plantLink
-        plantLink.appendChild(ul);
+        // Append the divs to the plantLink
+        plantLink.appendChild(imgDiv);
+        plantLink.appendChild(nameDiv);
+        plantLink.appendChild(sciNameDiv);
         
-        // Append the plantLink to the div
+        // Append the plantLink to the main div
         plantDiv.appendChild(plantLink);
 
-        // Append the div to the 'results' div
+        // Append the main div to the 'results' div
         resultsDiv.appendChild(plantDiv);
 
         console.log(plant);
