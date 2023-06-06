@@ -1,7 +1,7 @@
 <ul>
-<li> name: {{common_name}}</li>
+<li>Name: <span id="common-name">{{common_name}}</span></li>
 <li><img src="{{image_url}}"></li>
-<li>Scientific name: {{scientific_name}}</li>
+<li>Scientific name: <span id="scientific-name">{{scientific_name}}</span></li>
 
 -
 <li>The following don't work yet:
@@ -12,5 +12,8 @@
 <li>Average Height: {{average_height}} (object)</li>
 <li>Maximum Height: {{maximum_height}}</li>
 </ul>
+
+<button id="add-plant">Link this Leaf!</button>
+
 <a href="/plant/search">Back to search</a>
-```
+<script src="/js/plant-add.js"></script>
