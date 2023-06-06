@@ -16,9 +16,12 @@ router.get('/search', async (req, res) => {
 //Post all searched for plants from API to a page
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
+  const page = req.body.page || 1;
+  const pageSize = req.body.pageSize || 20;
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
+  
   try {
-      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}&page_size=${pageSize}`);
       const data = {
         plants: response.data.data.map(plant => {
           return {
@@ -26,7 +29,9 @@ router.post('/search', async (req, res) => {
             scientific_name: plant.scientific_name,
             image_url: plant.image_url,
           }
-        })
+        }),
+        links: response.data.links,
+        meta: response.data.meta
       }
       res.json(data);
   } catch (err) {
