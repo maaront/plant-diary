@@ -21,10 +21,15 @@ document.getElementById("search-form").addEventListener("submit", function (even
           plantCard.classList.add("card", "col-4");
 
           if (plant.image_url) {
+            const plantLink = document.createElement("a");
+            plantLink.href = `/plant/${plant.common_name}`; // Replace with the correct link to individual plant page
+
             const plantImage = document.createElement("img");
             plantImage.src = plant.image_url;
             plantImage.classList.add("card-img-top");
-            plantCard.appendChild(plantImage);
+            plantLink.appendChild(plantImage);
+
+            plantCard.appendChild(plantLink);
           }
 
           const plantCardBody = document.createElement("div");
