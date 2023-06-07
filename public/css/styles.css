@@ -74,7 +74,7 @@ a {
 
 .row.search-page-container {
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 /* Hero section */
@@ -113,31 +113,34 @@ a {
   color: var(--light);
 }
 
+.form-control {
+  border-radius: 0;
+  padding: 0.375rem 0.75rem 0;
+}
+
 .form-control:focus {
-  box-shadow: none; 
+  box-shadow: none;
+  border-radius: 0;
 }
 
 /* Search page container */
-.search-page-container {
-  margin-top: 100px;
-}
-
-
 .gap-3 > * + * {
   margin-left: 20px;
 }
-
 
 .gap-3.row > * + * {
   margin-left: 0;
 }
 
 /* Search input */
+#search-form {
+  min-width: 200px;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  
 }
 
 #search-input {
@@ -148,6 +151,8 @@ select:focus {
   color: var(--accent);
   min-width: 200px;
   text-align: center;
+  max-width: 400px;
+  margin: auto;
 }
 
 #search-input:focus {
