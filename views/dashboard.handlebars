@@ -10,11 +10,13 @@
       {{#if user.plants}}
         {{#each user.plants as |plant|}}
           <div class="card col-4">
+            <a href="/plant/{{plant.common_name}}">
             <img src="{{plant.image_url}}" class="card-img-top">
             <div class="card-body">
               <p class="card-title">{{plant.common_name}}</p>
               <p class="card-body">{{plant.scientific_name}}</p>
             </div>
+            </a>
           </div>
         {{/each}}
       {{else}}
