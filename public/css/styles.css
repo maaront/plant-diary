@@ -3,7 +3,7 @@
   --dark: #03172c;
   --light: #f3f3f3;
   --accent: #7a97e0;
-  --accent-light: #dde7ff;
+  --accent-light: #e4ebfc;
 }
 
 html * {
@@ -12,6 +12,11 @@ html * {
 
 a {
   color: var(--accent);
+}
+
+/* Navigation */
+.nav-link:focus, .nav-link:hover {
+  color: #000;
 }
 
 /* Logo */
@@ -28,6 +33,7 @@ a {
   border-radius: 0;
   border: 0;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .card-title {
@@ -47,8 +53,14 @@ a {
   right: 0;
   background-color: rgba(255, 0, 0, 0.8);
   color: white;
-  display: none;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, height 0.3s ease;
 }
+
+
 
 .delete-button {
   width: 100%;
@@ -58,7 +70,8 @@ a {
 }
 
 .card:hover .delete-element {
-  display: block;
+  opacity: 1;
+  height: auto;
 }
 
 .card:hover {
