@@ -3,11 +3,22 @@
   --dark: #03172c;
   --light: #f3f3f3;
   --accent: #7a97e0;
+  --accent-light: #dde7ff;
+}
+
+html * {
+  font-family: 'Raleway', sans-serif;;
 }
 
 a {
   color: var(--accent);
 }
+
+/* Logo */
+.logo {
+  width: 150px;
+}
+
 
 /* Card styling */
 .card {
@@ -19,15 +30,31 @@ a {
   position: relative;
 }
 
+.card-title {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.card-body > .card-body{
+  margin-bottom: 30px;
+  font-weight: 200;
+}
+
 .delete-element {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px;
   background-color: rgba(255, 0, 0, 0.8);
   color: white;
   display: none;
+}
+
+.delete-button {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .card:hover .delete-element {
@@ -35,12 +62,12 @@ a {
 }
 
 .card:hover {
-  background-color: var(--accent);
+  background-color: var(--accent-light);
 }
 
-.card:hover p {
+/* .card:hover p {
   color: var(--light);
-}
+} */
 
 .card p a {
   text-decoration: none;
