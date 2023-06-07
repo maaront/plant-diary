@@ -3,11 +3,27 @@
   --dark: #03172c;
   --light: #f3f3f3;
   --accent: #7a97e0;
+  --accent-light: #e4ebfc;
+}
+
+html * {
+  font-family: 'Raleway', sans-serif;;
 }
 
 a {
   color: var(--accent);
 }
+
+/* Navigation */
+.nav-link:focus, .nav-link:hover {
+  color: #000;
+}
+
+/* Logo */
+.logo {
+  width: 150px;
+}
+
 
 /* Card styling */
 .card {
@@ -17,6 +33,17 @@ a {
   border-radius: 0;
   border: 0;
   position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.card-title {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.card-body > .card-body{
+  margin-bottom: 30px;
+  font-weight: 200;
 }
 
 .delete-element {
@@ -24,23 +51,47 @@ a {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px;
-  background-color: rgba(255, 0, 0, 0.8);
   color: white;
-  display: none;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, height 0.3s ease;
 }
 
+
+
+.delete-button {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: orange;
+  border: 0;
+}
+
+.delete-button:hover {
+  background-color: orange;
+}
+
+.confirm {
+  background-color: red !important;
+}
+
+
 .card:hover .delete-element {
-  display: block;
+  opacity: 1;
+  height: auto;
 }
 
 .card:hover {
-  background-color: var(--accent);
+  background-color: var(--accent-light);
 }
 
-.card:hover p {
+/* .card:hover p {
   color: var(--light);
-}
+} */
 
 .card p a {
   text-decoration: none;
@@ -74,7 +125,7 @@ a {
 
 .row.search-page-container {
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 /* Hero section */
@@ -113,22 +164,30 @@ a {
   color: var(--light);
 }
 
-/* Search page container */
-.search-page-container {
-  margin-top: 100px;
+.form-control {
+  border-radius: 0;
+  padding: 0.375rem 0.75rem 0;
 }
 
+.form-control:focus {
+  box-shadow: none;
+  border-radius: 0;
+}
 
+/* Search page container */
 .gap-3 > * + * {
   margin-left: 20px;
 }
-
 
 .gap-3.row > * + * {
   margin-left: 0;
 }
 
 /* Search input */
+#search-form {
+  min-width: 200px;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -143,6 +202,9 @@ select:focus {
   color: var(--accent);
   min-width: 200px;
   text-align: center;
+  max-width: 400px;
+  margin: auto;
+  text-transform: uppercase;
 }
 
 #search-input:focus {
@@ -231,6 +293,7 @@ select:focus {
   margin-top: 50px;
 }
 
-#dashboard-container .card {
-  /* Additional styling for the cards in the dashboard */
+/* Footer */
+.footer {
+  background-color: #fff;
 }
