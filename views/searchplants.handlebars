@@ -1,26 +1,33 @@
+<!-- Search form -->
+<div class="row search-page-container">
+  <div class="d-flex flex-column align-items-center">
+    <p>Use the form to search for a plant. Click on the plant to learn more and
+      add it to your database.</p>
+    <form id="search-form" class="form-group">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="&#xF002; SEARCH NEW PLANTS"
+      />
 
-  <h1>Link your leaves</h1>
-<p>Use the form to search for a plant. Click on the plant to learn more and add it to your diary.</p>
-  <!-- Search form -->
-  <form id="search-form">
-    <input type="text" id="search-input" placeholder="Search for any Plant" />
-    <button type="submit">Search</button>
-  </form>
-</div>
-
-<div>
-  <!-- Search results -->
-  <h2>Search Results</h2>
-  <div id="search-results">
-    {{#each plants}}
-      <div class="result">
-        
-        <a href="{{this.common_name}}">{{this.common_name}}</a> <br />
-         
-      </div>
-    {{else}}
-      <p>No results found.</p>
-    {{/each}}
+    </form>
   </div>
 </div>
+<div>
+  <!-- Search results -->
+
+  <div id="search-results">
+    {{#each plants}}
+
+      <div class="result">
+
+        {{!-- <a href="{{this.common_name}}">{{this.common_name}}</a> <br /> --}}
+
+      </div>
+      {{!-- {{else}}
+      <p>No results found.</p> --}}
+    {{/each}}
+    
+    </div>
+    <div id="pagination"></div>
 <script src="/js/plant-search.js"></script>
