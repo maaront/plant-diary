@@ -34,20 +34,6 @@ router.post('/search', async (req, res) => {
 });
 
 
-function parseResponseData(response) {
-  return {
-    plants: response.data.data.map((plant) => {
-      return {
-        common_name: plant.common_name,
-        scientific_name: plant.scientific_name,
-        image_url: plant.image_url,
-      };
-    }),
-    links: response.data.links,
-    total_pages: response.data.meta.total_pages,
-  };
-}
-
 // Post one plant from search to a page
 router.get("/:plantName", async (req, res) => {
   const plantName = req.params.plantName;
