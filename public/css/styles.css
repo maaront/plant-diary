@@ -113,6 +113,10 @@ a {
   color: var(--light);
 }
 
+.form-control:focus {
+  box-shadow: none; 
+}
+
 /* Search page container */
 .search-page-container {
   margin-top: 100px;
@@ -133,6 +137,7 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
+  
 }
 
 #search-input {
@@ -231,6 +236,7 @@ select:focus {
   margin-top: 50px;
 }
 
-#dashboard-container .card {
-  /* Additional styling for the cards in the dashboard */
+/* Footer */
+.footer {
+  background-color: #fff;
 }
