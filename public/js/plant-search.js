@@ -23,22 +23,26 @@ document.getElementById("search-form").addEventListener("submit", function (even
       plantList.innerHTML = "";
       for (let plant of response.plants) {
         const plantDiv = document.createElement("div");
+        plantDiv.classList.add("card");
 
         // Add image
         if (plant.image_url) {
           const image = document.createElement("img");
           image.src = plant.image_url;
+          image.classList.add("img", "card-img-top");  // Add classes to the image
           plantDiv.appendChild(image);
         }
         
         // Add common name
-        const commonName = document.createElement("h2");
+        const commonName = document.createElement("p");
         commonName.textContent = plant.common_name;
+        commonName.classList.add("card-title");  // Add classes to the h2
         plantDiv.appendChild(commonName);
 
         // Add scientific name
         const scientificName = document.createElement("p");
         scientificName.textContent = plant.scientific_name;
+        scientificName.classList.add("card-body");  // Add classes to the p
         plantDiv.appendChild(scientificName);
 
         // Create a link for the plant

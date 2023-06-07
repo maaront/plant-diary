@@ -24,17 +24,18 @@
 .card:hover {
   background-color: var(--accent);
 }
-.card:hover a {
+.card:hover p {
 color: var(--light);
 }
 
-.card a {
+.card p a {
   text-decoration: none;
   color: var(--dark);
 }
 
 .card-title {
   padding: 5px 0 0 16px;
+  font-weight: bold;
 }
 
 .card-body {

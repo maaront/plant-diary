@@ -23,6 +23,8 @@ router.post('/search', async (req, res) => {
         plants: response.data.data.map(plant => {
           return {
             common_name: plant.common_name,
+            scientific_name: plant.scientific_name,
+            image_url: plant.image_url,
           }
         })
       }
