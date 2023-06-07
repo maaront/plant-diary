@@ -1,22 +1,14 @@
 <!-- Search form -->
 <div class="row search-page-container">
-  <div class="d-flex flex-column align-items-center">
-    <p>Use the form to search for a plant. Click on the plant to learn more and
-      add it to your database.</p>
+  <div class="text-center">
+    <p>Use the form to search for a plant. Click on the plant to learn more and add it to your database.</p>
     <form id="search-form" class="form-group">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="&#xF002; SEARCH NEW PLANTS"
-      />
-
+      <input type="text" id="search-input" class="form-control" placeholder="&#xF002; SEARCH NEW PLANTS" />
     </form>
   </div>
 </div>
-<div>
   <!-- Search results -->
-
-  <div id="search-results">
+<div id="search-results" class="row justify-content-center"></div>
     {{#each plants}}
 
       <div class="result">
@@ -29,5 +21,5 @@
     {{/each}}
     
     </div>
-    <div id="pagination"></div>
+    
 <script src="/js/plant-search.js"></script>

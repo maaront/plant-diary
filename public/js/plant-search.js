@@ -20,6 +20,8 @@ document.getElementById("search-form").addEventListener("submit", function (even
       console.log(response);
       // Create search-results div
       const plantList = document.getElementById("search-results");
+      plantList.classList.add("row", "d-flex");
+
       plantList.innerHTML = "";
       for (let plant of response.plants) {
         const plantDiv = document.createElement("div");
