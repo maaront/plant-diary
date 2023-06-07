@@ -3,7 +3,9 @@ document.getElementById('add-plant').addEventListener('click', async () => {
 
     // Get required plant data from the HTML elements. We can add more later
   const commonName = document.getElementById('common-name').innerText;
-  const scientificName = document.getElementById('common-name').innerText; 
+  const scientificName = document.getElementById('scientific-name').innerText; 
+  const imageURL = document.getElementById('plant-image').src; 
+  console.log(imageURL);
 
   // POST request to '/plant/add'route 
   const response = await fetch('/plant/add', {
@@ -14,7 +16,10 @@ document.getElementById('add-plant').addEventListener('click', async () => {
     body: JSON.stringify({ 
       common_name: commonName, 
       scientific_name: scientificName, 
+      image_url: imageURL,
+
     }),
+    
   }); 
 
   // Create new div for fail/success message

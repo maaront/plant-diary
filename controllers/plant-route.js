@@ -48,6 +48,9 @@ router.get("/:plantName", async (req, res) => {
     const plants = response.data.data;
 
     res.render("plant", plants[0]); // Render the plant handlebars page
+
+
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
