@@ -1,3 +1,6 @@
+// Add event listener to button click
+document.getElementById('add-plant').addEventListener('click', async () => {
+
 // Function to delete a plant
 const deletePlant = async (plantId) => {
   try {
@@ -16,3 +19,18 @@ const deletePlant = async (plantId) => {
     console.error(err);
   }
 };
+
+  // Create new div for fail/success message
+  const messageDiv = document.createElement('div');
+
+  if (response.ok) {
+    // Success
+    messageDiv.innerText = 'Plant deleted successfully';
+  } else {
+    // Failed
+    messageDiv.innerText = 'Failed to delete plant';
+  }
+
+  // Add the new div to the body of the document
+  document.body.appendChild(messageDiv);
+});
