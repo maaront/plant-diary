@@ -57,8 +57,8 @@ a{
 
 .card {
   width: 15rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc;
+  border-radius: 5px; */
   overflow: hidden;
 }
 
@@ -75,14 +75,9 @@ a{
   color: var(--dark);
 }
 
-.card-img-top {
+ .card-img-top {
   height: 100px;
   overflow: hidden;
-  object-fit: cover;
-}
-
-.card-img-top img {
-  width: 100%;
   object-fit: cover;
 }
 

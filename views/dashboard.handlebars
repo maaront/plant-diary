@@ -5,10 +5,12 @@
  <header>
    <h1 class="mb-4 text-center"> {{user.user_name}}'s Plant Dashboard</h1>  
   </header>
+  </div>
   <br>
-  
+  <div class="container">
+  <div class="row justify-content-center">
 {{#if user.plants}}
-  <div class="row">
+  
     {{#each user.plants as |plant|}}
       <div class="card col-4">
         <img src="{{plant.image_url}}" class="card-img-top">
@@ -25,6 +27,9 @@
   <p>No plants Yet!</p>
 {{/if}}
 </div>
+</div>
+
+
 
  
 </main> 
