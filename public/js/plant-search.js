@@ -1,59 +1,57 @@
-// Listen for the form submit event
 document.getElementById("search-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // Get the plant name from the form input
   const plantName = document.getElementById("search-input").value;
 
-  // Send a POST request to the /search route on the server
   fetch(`/plant/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    // Convert the JavaScript object to a JSON string
-    body: JSON.stringify({ plantName: plantName })
+    body: JSON.stringify({ plantName: plantName }),
   })
-    // Parse the response as JSON
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
-      // Create search-results div
       const plantList = document.getElementById("search-results");
-      plantList.classList.add("row", "d-flex");
+      plantList.innerHTML = ""; // Clear previous results
 
-      plantList.innerHTML = "";
-      for (let plant of response.plants) {
-        const plantDiv = document.createElement("div");
-        plantDiv.classList.add("card");
+      if (response.plants.length > 0) {
+        for (let plant of response.plants) {
+          const plantCard = document.createElement("div");
+          plantCard.classList.add("card", "col-4");
 
-        // Add image
-        if (plant.image_url) {
-          const image = document.createElement("img");
-          image.src = plant.image_url;
-          image.classList.add("img", "card-img-top");  // Add classes to the image
-          plantDiv.appendChild(image);
+          if (plant.image_url) {
+            const plantLink = document.createElement("a");
+            plantLink.href = `/plant/${plant.common_name}`; // Replace with the correct link to individual plant page
+
+            const plantImage = document.createElement("img");
+            plantImage.src = plant.image_url;
+            plantImage.classList.add("card-img-top");
+            plantLink.appendChild(plantImage);
+
+            plantCard.appendChild(plantLink);
+          }
+
+          const plantCardBody = document.createElement("div");
+          plantCardBody.classList.add("card-body");
+
+          const commonName = document.createElement("p");
+          commonName.classList.add("card-title");
+          commonName.textContent = plant.common_name;
+          plantCardBody.appendChild(commonName);
+
+          const scientificName = document.createElement("p");
+          scientificName.classList.add("card-text");
+          scientificName.textContent = plant.scientific_name;
+          plantCardBody.appendChild(scientificName);
+
+          plantCard.appendChild(plantCardBody);
+
+          plantList.appendChild(plantCard);
         }
-        
-        // Add common name
-        const commonName = document.createElement("p");
-        commonName.textContent = plant.common_name;
-        commonName.classList.add("card-title");  // Add classes to the h2
-        plantDiv.appendChild(commonName);
-
-        // Add scientific name
-        const scientificName = document.createElement("p");
-        scientificName.textContent = plant.scientific_name;
-        scientificName.classList.add("card-body");  // Add classes to the p
-        plantDiv.appendChild(scientificName);
-
-        // Create a link for the plant
-        const plantLink = document.createElement("a");
-        plantLink.href = `/plant/${plant.common_name}`;  // Replace with the correct link to individual plant page
-        plantLink.appendChild(plantDiv);
-
-        plantList.appendChild(plantLink);
+      } else {
+        plantList.innerHTML = "<p>No results found.</p>";
       }
     })
-    .catch((err) => console.error(err));  // Handle errors
+    .catch((err) => console.error(err));
 });

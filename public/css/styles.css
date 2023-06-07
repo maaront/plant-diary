@@ -1,9 +1,70 @@
+/* Global styling */
 :root {
   --dark: #03172c;
   --light: #f3f3f3;
   --accent: #7a97e0;
 }
 
+a {
+  color: var(--accent);
+}
+
+/* Card styling */
+.card {
+  width: 15rem;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  position: relative;
+}
+
+.delete-element {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  display: none;
+}
+
+.card:hover .delete-element {
+  display: block;
+}
+
+.card:hover {
+  background-color: var(--accent);
+}
+
+.card:hover p {
+  color: var(--light);
+}
+
+.card p a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+.card a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+.card-img-top {
+  height: 100px;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.card-body {
+  padding: 0;
+  /* margin-bottom: 20px; */
+}
+
+/* Container and row styles */
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -16,15 +77,20 @@
   margin-top: 20px;
 }
 
+/* Hero section */
 .hero {
   padding-right: 150px;
 }
 
+.hero p {
+  text-align: left;
+}
+
+/* Login card */
 .login-card {
   background-color: var(--accent);
   color: var(--light);
   width: 100%;
-
 }
 
 .login-title {
@@ -47,42 +113,25 @@
   color: var(--light);
 }
 
-.card {
-  width: 15rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.card:hover {
-  background-color: var(--accent);
-}
-
-.card:hover p {
-  color: var(--light);
-}
-
-.card p a {
-  text-decoration: none;
-  color: var(--dark);
-}
-
-.card-img-top {
-  height: 100px;
-  overflow: hidden;
-  object-fit: cover;
-}
-
-.card-img-top img {
-  width: 100%;
-  object-fit: cover;
-}
-
+/* Search page container */
 .search-page-container {
   margin-top: 100px;
 }
 
-input:focus, textarea:focus, select:focus{
+
+.gap-3 > * + * {
+  margin-left: 20px;
+}
+
+
+.gap-3.row > * + * {
+  margin-left: 0;
+}
+
+/* Search input */
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
@@ -113,6 +162,7 @@ input:focus, textarea:focus, select:focus{
   color: var(--accent);
 }
 
+/* Search results */
 #search-results {
   display: flex;
   flex-wrap: wrap;
@@ -121,6 +171,7 @@ input:focus, textarea:focus, select:focus{
   padding: 0 50px 100px;
 }
 
+/* Plant image */
 .plant-image {
   width: 100%;
   max-width: 600px;
@@ -136,6 +187,7 @@ input:focus, textarea:focus, select:focus{
   object-position: center;
 }
 
+/* Button styles */
 .btn-color {
   background-color: var(--accent);
   color: var(--light);
@@ -158,15 +210,27 @@ input:focus, textarea:focus, select:focus{
   border: 1px solid var(--light);
 }
 
+/* Back to search link */
 #back-to-search {
   margin-top: 50px;
 }
 
+/* Submit button */
 #submit {
-  margin-top: 25px; 
+  margin-top: 25px;
 }
 
+/* Create account link */
 .create-account-link a {
-  color: var(--light); 
+  color: var(--light);
   font-size: 12px;
+}
+
+/* Dashboard container */
+.dashboard-container {
+  margin-top: 50px;
+}
+
+#dashboard-container .card {
+  /* Additional styling for the cards in the dashboard */
 }

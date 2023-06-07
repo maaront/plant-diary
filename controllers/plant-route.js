@@ -60,6 +60,7 @@ router.get("/:plantName", async (req, res) => {
 // POST add plant
 router.post("/add", async (req, res) => {
   try {
+    console.log(req.body) //image url should show in console [success]
     const newPlant = await Plant.create({
       ...req.body,
       user_id: req.session.user_id,
@@ -69,5 +70,34 @@ router.post("/add", async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// DELETE plant
+router.delete("/:plantId", async (req, res) => {
+  try {
+    const plantId = req.params.plantId;
+    const userId = req.session.user_id;
+
+    // Check if the plant belongs to the current user
+    const plant = await Plant.findOne({
+      where: {
+        id: plantId,
+        user_id: userId,
+      },
+    });
+
+    if (!plant) {
+      // Plant not found or doesn't belong to the user
+      return res.status(404).json({ message: "Plant not found" });
+    }
+
+    // Delete the plant
+    await plant.destroy();
+
+    res.status(200).json({ message: "Plant deleted successfully" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 
 module.exports = router;

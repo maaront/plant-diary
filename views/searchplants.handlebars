@@ -1,25 +1,15 @@
 <!-- Search form -->
-<div class="row search-page-container">
-  <div class="text-center">
-    <p>Use the form to search for a plant. Click on the plant to learn more and add it to your database.</p>
-    <form id="search-form" class="form-group">
-      <input type="text" id="search-input" class="form-control" placeholder="&#xF002; SEARCH NEW PLANTS" />
-    </form>
-  </div>
-</div>
-  <!-- Search results -->
-<div id="search-results" class="row justify-content-center"></div>
-    {{#each plants}}
-
-      <div class="result">
-
-        {{!-- <a href="{{this.common_name}}">{{this.common_name}}</a> <br /> --}}
-
-      </div>
-      {{!-- {{else}}
-      <p>No results found.</p> --}}
-    {{/each}}
-    
+<div class="container">
+  <div class="row search-page-container justify-content-center">
+    <div class="text-center">
+      <p>Use the form to search for a plant. Click on the plant to learn more and add it to your database.</p>
+      <form id="search-form" class="form-group">
+        <input type="text" id="search-input" class="form-control" placeholder="&#xF002; SEARCH NEW PLANTS" />
+      </form>
     </div>
-    
+  </div>
+
+  <div id="search-results" class="row justify-content-center gap-3"></div>
+</div>
+
 <script src="/js/plant-search.js"></script>

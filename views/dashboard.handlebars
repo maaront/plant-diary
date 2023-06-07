@@ -1,28 +1,33 @@
 <main class="container mt-5">
-  <div class="row">
-    <div class="col-12"> 
-
- <header>
-   <h1 class="mb-4 text-center"> {{user.user_name}}'s Plant Dashboard</h1>  
-  </header>
-  <br>
-{{#if user.plants}}
-  <div class="card-deck">
-    {{#each user.plants as |plant|}}
-      <div class="card" style="width: 18rem;">
-        <img src="{{plant.image_url}}" class="card-img-top">
-        <div class="card-body">
-          <p class="card-text"> 
-            Plant name: {{plant.common_name}} <br>
-            Scientific Name: {{plant.scientific_name}}
-          </p>
+  <div class="row justify-content-center search-page-container">
+    <div class="col-12">
+      <header>
+        <h1 class="mb-4 text-center">{{user.user_name}}'s Plant Dashboard</h1>
+      </header>
+    </div>
+    <br>
+    <div id="dashboard-container" class="row justify-content-center d-flex gap-3">
+      {{#if user.plants}}
+        {{#each user.plants as |plant|}}
+          <div class="card col-4" data-plant-id="{{plant.id}}">
+            <a href="/plant/{{plant.common_name}}">
+            <img src="{{plant.image_url}}" class="card-img-top">
+            <div class="card-body">
+              <p class="card-title">{{plant.common_name}}</p>
+              <p class="card-body">{{plant.scientific_name}}</p>
+              <div class="delete-element">
+          
+          <button class="btn btn-danger delete-button">Delete</button>
         </div>
-      </div> 
-    {{/each}}
+            </div>
+            </a>
+          </div>
+        {{/each}}
+      {{else}}
+        <p>No plants Yet!</p>
+      {{/if}}
+    </div>
   </div>
-{{else}}
-  <p>No plants Yet!</p>
-{{/if}}
+</main>
 
- 
-</main> 
+<script src="/js/plant-delete.js"></script>

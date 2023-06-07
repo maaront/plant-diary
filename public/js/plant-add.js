@@ -34,5 +34,7 @@ document.getElementById('add-plant').addEventListener('click', async () => {
   }
 
   // Add the new div to the body of the document
-  document.body.appendChild(messageDiv);
+  const  messageContainer = document.getElementById('message-container');
+  messageContainer.innerHTML = '';
+  messageContainer.appendChild(messageDiv);
 });
