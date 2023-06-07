@@ -1,4 +1,4 @@
- // Function to delete a plant
+// Function to delete a plant
 const deletePlant = async (plantId) => {
   try {
     const response = await fetch(`/plant/${plantId}`, {
@@ -9,7 +9,7 @@ const deletePlant = async (plantId) => {
       // Plant deleted successfully
       console.log('Plant deleted successfully');
 
-      // Remove the plant card 
+      // Remove the plant card
       const plantCard = document.querySelector(`.card[data-plant-id="${plantId}"]`);
       if (plantCard) {
         plantCard.remove();
@@ -23,34 +23,36 @@ const deletePlant = async (plantId) => {
   }
 };
 
-  
-
-// event listeners for buttons
+// Event listeners for buttons
 document.addEventListener('DOMContentLoaded', () => {
-    const deleteButtons = document.querySelectorAll('.delete-button');
-  
-    deleteButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent event bubbling
-        event.preventDefault(); // Prevent default link behavior
-  
-        const confirmation = confirm('Are you sure you want to delete this plant?');
-        if (confirmation) {
-          const plantCard = event.target.closest('.card');
-          const plantId = plantCard.dataset.plantId;
-          console.log(plantId);
-          deletePlant(plantId);
-        }
-      });
-    });
-  
-    const plantCards = document.querySelectorAll('.card');
-  
-    plantCards.forEach((card) => {
-      card.addEventListener('click', (event) => {
-        // Prevent redirect to individual plant page
-        event.preventDefault();
-      });
+  const deleteButtons = document.querySelectorAll('.delete-button');
+
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent event bubbling
+      event.preventDefault(); // Prevent default link behavior
+
+      const plantCard = event.target.closest('.card');
+      const plantId = plantCard.dataset.plantId;
+      console.log('Plant ID:', plantId);
+
+      if (button.classList.contains('confirm')) {
+        // Delete the plant
+        deletePlant(plantId);
+      } else {
+        button.classList.add('confirm');
+        button.textContent = 'Are you sure?';
+        button.style.backgroundColor = 'red';
+      }
     });
   });
-  
+
+  const plantCards = document.querySelectorAll('.card');
+
+  plantCards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      // Prevent redirect to individual plant page
+      event.preventDefault();
+    });
+  });
+});

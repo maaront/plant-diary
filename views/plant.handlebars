@@ -29,6 +29,7 @@
       <h1><span id="common-name">{{common_name}}</span></h1>
       <h4><span id="scientific-name">{{scientific_name}}</span></h4>
       <button class="btn btn-color" id="add-plant">Add to my database</button>
+      <div id="message-container"></div>
     </div>
     <div class="col plant-image">
       <img id="plant-image" class="plant-img" src="{{image_url}}" />
@@ -37,7 +38,7 @@
 </div>
 <div class="d-flex align-items-center justify-content-center">
     <button onclick="window.location.href='/plant/search';" id="back-to-search" class="btn btn-outline-dark">Back to search</button>
-    <div id="message-container"></div>
+    
 </div>
 
 <script src="/js/plant-add.js"></script>

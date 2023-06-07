@@ -51,7 +51,6 @@ a {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255, 0, 0, 0.8);
   color: white;
   display: block;
   opacity: 0;
@@ -67,7 +66,19 @@ a {
   height: 100%;
   margin: 0;
   padding: 0;
+  border-radius: 0;
+  background-color: orange;
+  border: 0;
 }
+
+.delete-button:hover {
+  background-color: orange;
+}
+
+.confirm {
+  background-color: red !important;
+}
+
 
 .card:hover .delete-element {
   opacity: 1;
