@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('dashboard', { user }); // pass the user to the template
+    res.render('dashboard', { user, loggedIn: req.session.logged_in }); // pass the user to the template
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
