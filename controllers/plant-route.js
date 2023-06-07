@@ -60,6 +60,7 @@ router.get("/:plantName", async (req, res) => {
 // POST add plant
 router.post("/add", async (req, res) => {
   try {
+    console.log(req.body) //image url should show in console [success]
     const newPlant = await Plant.create({
       ...req.body,
       user_id: req.session.user_id,

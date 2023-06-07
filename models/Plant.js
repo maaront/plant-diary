@@ -19,6 +19,10 @@ Plant.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
