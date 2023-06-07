@@ -13,23 +13,23 @@ router.get("/search", async (req, res) => {
   }
 });
 
-// Post all searched for plants from API to a page
+//Post all searched for plants from API to a page
 router.post('/search', async (req, res) => {
   const plantName = req.body.plantName;
   const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
   try {
-    const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`);
-    const data = {
-      plants: response.data.data.map(plant => {
-        return {
-          common_name: plant.common_name,
-        }
-      })
-    }
-    res.json(data);
+      const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}`)
+      const data = {
+        plants: response.data.data.map(plant => {
+          return {
+            common_name: plant.common_name,
+          }
+        })
+      }
+      res.json(data);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });  
+      console.error(err);
+      res.status(500).json({ message: 'Server error' });  
   }
 });
 
