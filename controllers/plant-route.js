@@ -3,10 +3,10 @@ const { response } = require("express");
 const { Plant } = require("../models");
 const axios = require("axios"); // import axios
 
-// Render search page
-router.get("/search", async (req, res) => {
+router.get('/search',  async (req, res) => {
   try {
-    res.render("searchplants");
+      res.render('searchplants', { loggedIn: req.session.logged_in});
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

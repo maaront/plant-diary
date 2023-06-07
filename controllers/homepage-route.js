@@ -7,10 +7,10 @@ const withAuth = require('../utils/auth.js');
 router.get('/', async (req, res) => {
   try {
     // If the user is logged in, redirect them to the dashboard
-    if (req.session.logged_in) {
-      res.redirect('/dashboard');
-      return;
-    }
+    // if (req.session.logged_in) {
+      // res.redirect('/dashboard');
+      // return;
+    // }
 
     // Render the 'homepage' template
     res.render('homepage');
