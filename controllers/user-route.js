@@ -62,22 +62,39 @@ router.post("/logout", (req, res) => {
 });
 
 // POST a new user
-router.post("/", async (req, res) => {
+router.post("/create-account", async (req, res) => {
   try {
-    const userData = await User.create({
-      user_name: req.body.user_name,
-      user_password: req.body.user_password,
+    // Check if a user already exists with this username
+    const existingUser = await User.findOne({
+      where: { user_name: req.body.user_name },
     });
-    console.log(req.session);
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
 
-      res.status(200).json(userData);
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ message: "A user with this username already exists" });
+    }
+
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(req.body.user_password, 10);
+
+    // Create a new user
+    const newUser = await User.create({
+      user_name: req.body.user_name,
+      user_password: hashedPassword,
+      // add more fields here if necessary
     });
+
+    // Save the user's id and logged_in status in session
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.logged_in = true;
+    });
+
+    res.status(201).json(newUser);
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
