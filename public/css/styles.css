@@ -82,6 +82,10 @@
   margin-top: 100px;
 }
 
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
 #search-input {
   font-family: Arial, FontAwesome;
   outline: 0;
