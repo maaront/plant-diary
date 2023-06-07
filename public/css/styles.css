@@ -10,6 +10,12 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.row.search-page-container {
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .hero {
   padding-right: 150px;
 }
@@ -43,11 +49,9 @@
 
 .card {
   width: 15rem;
-  margin: 20px;
-  min-height: 195px;
-  border: 0;
-  line-height: 1rem;
-  transition-timing-function: ease;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -66,6 +70,7 @@
 .card-img-top {
   height: 100px;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .card-img-top img {
@@ -105,6 +110,10 @@
 }
 
 #search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   padding: 0 50px 100px;
 }
 
