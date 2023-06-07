@@ -180,6 +180,7 @@ select:focus {
   text-align: center;
   max-width: 400px;
   margin: auto;
+  text-transform: uppercase;
 }
 
 #search-input:focus {
