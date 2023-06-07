@@ -15,7 +15,10 @@ function searchFormSubmit(event) {
     headers,
     body,
   })
-  .then((response) => response.json())
+  .then((response) => {
+    console.log(response);
+      return response.json();
+  })
   .then((response) => {
     console.log(response);
 
