@@ -4,12 +4,41 @@
   --accent: #7a97e0;
 }
 
-
 .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+}
+.hero {
+  padding-right: 150px;
+}
+
+.login-card {
+  background-color: var(--accent);
+  color: var(--light);
+  width: 100%;
+
+}
+
+.login-title {
+  padding-bottom: 20px;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--light);
+  text-align: center;
+  color: var(--light);
+  line-height: 0;
+  margin-bottom: 30px;
+}
+
+#login-form input[type="text"]::placeholder,
+#login-form input[type="password"]::placeholder {
+  color: var(--light);
 }
 
 .card {
@@ -24,25 +53,14 @@
 .card:hover {
   background-color: var(--accent);
 }
+
 .card:hover p {
-color: var(--light);
+  color: var(--light);
 }
 
 .card p a {
   text-decoration: none;
   color: var(--dark);
-}
-
-.card-title {
-  padding: 5px 0 0 16px;
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 0 16px;
-}
-
-.plant-link {
 }
 
 .card-img-top {
@@ -55,18 +73,12 @@ color: var(--light);
   object-fit: cover;
 }
 
-.card-title {
-}
-
-.card-body {
-}
-
 .search-page-container {
   margin-top: 100px;
 }
 
 #search-input {
-  font-family:Arial, FontAwesome;
+  font-family: Arial, FontAwesome;
   outline: 0;
   border-width: 0 0 2px;
   border-color: var(--accent);
@@ -76,30 +88,24 @@ color: var(--light);
 }
 
 #search-input:focus {
-}
-
-#search-form {
+  outline: none;
 }
 
 #search-input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--accent);
-  opacity: 1; /* Firefox */
+  opacity: 1;
 }
 
 #search-input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
   color: var(--accent);
 }
 
 #search-input::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: var(--accent);
 }
 
 #search-results {
   padding: 0 50px 100px;
-  
 }
 
 .plant-image {
@@ -128,7 +134,26 @@ color: var(--light);
   border: 1px solid var(--accent);
 }
 
+.btn-light {
+  background-color: var(--light);
+  color: var(--accent);
+}
+
+.btn-light:hover {
+  background: none;
+  color: var(--light);
+  border: 1px solid var(--light);
+}
 
 #back-to-search {
   margin-top: 50px;
+}
+
+#submit {
+  margin-top: 25px; 
+}
+
+.create-account-link a {
+  color: var(--light); 
+  font-size: 12px;
 }
