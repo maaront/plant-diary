@@ -17,7 +17,6 @@ router.get('/search', async (req, res) => {
 router.route('/search')
   .post(async (req, res) => {
     const plantName = req.body.plantName;
-    const page = req.body.page || 1; // Default to page 1 if not provided
     const token = 't_RrrFDUYpfQ6Dj_7jRMH3QPJENvdDDklPweJJNX-XU';
     try {
         const response = await axios.get(`https://trefle.io/api/v1/plants/search?token=${token}&q=${plantName}&page=${page}`);
