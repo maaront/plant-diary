@@ -1,5 +1,5 @@
 document
-  .getElementById("login-form")
+  .getElementById("create-account-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
