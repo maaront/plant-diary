@@ -1,4 +1,5 @@
 // Models
+const User = require("./User");
 const Plant = require("./Plant");
 const Diary = require("./Diary");
 const User = require("./User");
@@ -22,4 +23,5 @@ Diary.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-module.exports = { Plant, Diary, User };
+module.exports = { User, Plant, Diary };
+//module.exports = { Plant, Diary, User };
