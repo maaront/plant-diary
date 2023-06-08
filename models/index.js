@@ -2,7 +2,7 @@
 const User = require("./User");
 const Plant = require("./Plant");
 const Diary = require("./Diary");
-const User = require("./User");
+//const User = require("./User");
 
 // Associations
 User.hasMany(Plant, {
