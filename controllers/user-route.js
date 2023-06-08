@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
-
+    console.log(req.body.user_password, await bcrypt.hash(req.body.user_password, 10))
     const validPassword = await userData.checkPassword(req.body.user_password);
 
     if (!validPassword) {
@@ -88,13 +88,10 @@ router.post("/create-account", async (req, res) => {
         .json({ message: "A user with this username already exists" });
     }
 
-    // Hash the password before storing it
-    const hashedPassword = await bcrypt.hash(req.body.user_password, 10);
-
     // Create a new user
     const newUser = await User.create({
       user_name: req.body.user_name,
-      user_password: hashedPassword,
+      user_password: req.body.user_password,
       // add more fields here if necessary
     });
 
