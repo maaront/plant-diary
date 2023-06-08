@@ -2,6 +2,8 @@
 
 ## Description
 LeafLink is a web application that acts as a personal plant diary. It allows users to search for plants via an API, view details about individual plants, and save plants to their personal diary. The application uses Express.js for the server-side logic, MySQL as the database, Sequelize as the ORM to interact with the database, and Handlebars for the view templates. The plant data is fetched from the Trefle API.
+<img width="1209" alt="Screenshot 2023-06-07 at 9 35 46 PM" src="https://github.com/maaront/plant-diary/assets/35611834/1ff25fc5-176c-420c-a49d-15f5178437f1">
+
 
 ## Local Installation
 1. If you'd like to run this locally, clone the repository: git clone https://github.com/maaront/leaf-link
