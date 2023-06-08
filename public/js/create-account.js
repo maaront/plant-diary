@@ -8,7 +8,7 @@ document
     const password = document.getElementById("password-input").value;
 
     // Send a POST request to /create-account
-    fetch("/create-account", {
+    fetch("/users/create-account", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
