@@ -2,7 +2,7 @@
 const User = require("./User");
 const Plant = require("./Plant");
 const Diary = require("./Diary");
-//const User = require("./User");
+
 
 // Associations
 User.hasMany(Plant, {
@@ -24,4 +24,4 @@ Diary.belongsTo(User, {
 });
 
 module.exports = { User, Plant, Diary };
-//module.exports = { Plant, Diary, User };
+
