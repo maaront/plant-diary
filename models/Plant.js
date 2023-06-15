@@ -28,6 +28,10 @@ Plant.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    group:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
