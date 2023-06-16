@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js",
+    "hash": "node public/js/manual-pw-hash.js"
   },
   "author": "",
   "license": "ISC",
