@@ -8,27 +8,49 @@
     <br>
     <div id="dashboard-container" class="row justify-content-center d-flex gap-3">
       {{#if user.plants}}
-        {{#each user.plants as |plant|}}
-         {{#if (eq plant.group "indoor")}}
-         <h2>Indoor Plants</h2>
-          <div class="card col-4" data-plant-id="{{plant.id}}">
-            <a href="/plant/{{plant.common_name}}">
-            <img src="{{plant.image_url}}" class="card-img-top">
-            <div class="card-body">
-              <p class="card-title">{{plant.common_name}}</p>
-              <p class="card-body">{{plant.scientific_name}}</p>
-              <div class="delete-element">
-          
-          <button class="btn btn-danger delete-button">Delete</button>
+        <div class="col-6">
+          <h2>Indoor Plants</h2>
+          {{#each user.plants as |plant|}}
+            {{#if (eq plant.group "indoor")}}
+              <div class="card col-4" data-plant-id="{{plant.id}}">
+                <a href="/plant/{{plant.common_name}}">
+                  <img src="{{plant.image_url}}" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-title">{{plant.common_name}}</p>
+                    <p class="card-body">{{plant.scientific_name}}</p>
+                    <div class="delete-element">
+                      <button class="btn btn-danger delete-button">Delete</button>
+                    </div>
+                  </div>
+                </a>
               </div>
-                </div>
-              </a>
-            </div>
-          {{/if}}
-        {{/each}}
+            {{/if}}
+          {{/each}}
+        </div>
+        <div class="col-6">
+          <h2>Outdoor Plants</h2>
+          {{#each user.plants as |plant|}}
+            {{#if (eq plant.group "outdoor")}}
+              <div class="card col-4" data-plant-id="{{plant.id}}">
+                <a href="/plant/{{plant.common_name}}">
+                  <img src="{{plant.image_url}}" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-title">{{plant.common_name}}</p>
+                    <p class="card-body">{{plant.scientific_name}}</p>
+                    <div class="delete-element">
+                      <button class="btn btn-danger delete-button">Delete</button>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
       {{else}}
-        <p>No plants Yet!</p>
-        <p>Visit the <a href="/plant/search">Search page</a> to find plants and add them to your dashboard.</p>
+        <div class="col-12">
+          <p>No plants yet!</p>
+          <p><a href="/plant/search">No plants yet!</a></p>
+        </div>
       {{/if}}
     </div>
   </div>
