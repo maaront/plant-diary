@@ -9,6 +9,8 @@
     <div id="dashboard-container" class="row justify-content-center d-flex gap-3">
       {{#if user.plants}}
         {{#each user.plants as |plant|}}
+         {{#if (eq plant.group "indoor")}}
+         <h2>Indoor Plants</h2>
           <div class="card col-4" data-plant-id="{{plant.id}}">
             <a href="/plant/{{plant.common_name}}">
             <img src="{{plant.image_url}}" class="card-img-top">
@@ -18,10 +20,11 @@
               <div class="delete-element">
           
           <button class="btn btn-danger delete-button">Delete</button>
-        </div>
+              </div>
+                </div>
+              </a>
             </div>
-            </a>
-          </div>
+          {{/if}}
         {{/each}}
       {{else}}
         <p>No plants Yet!</p>

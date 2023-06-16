@@ -1,6 +1,6 @@
 const seedUsers = require('./user-seeds');
 const seedPlants = require('./plant-seeds');
-const seedDiary = require('./diary-seeds');
+// const seedDiary = require('./diary-seeds');
 
 
 const sequelize = require('../config/connection');
@@ -21,8 +21,8 @@ await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
   await seedPlants();
   console.log('\n----- PLANTS SEEDED -----\n');
    
-  await seedDiary();
-  console.log('\n----- DIARY SEEDED -----\n');
+  // await seedDiary();
+  // console.log('\n----- DIARY SEEDED -----\n');
 
   process.exit(0);
 };
